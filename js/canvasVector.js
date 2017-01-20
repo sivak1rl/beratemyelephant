@@ -214,6 +214,7 @@ jQuery(document).ready(function ($) {
 
     canvas = document.getElementById('canvas');
     context = canvas.getContext("2d");
+    $('#colorpicker').val('grey');
 
     // Event handlers
     // inside document.ready() to ensure elements exist
@@ -253,17 +254,14 @@ jQuery(document).ready(function ($) {
 
     $('#marker').click(function () {
         tool = "marker";
-        strokeColor = "grey";
     });
 
     $('#chisel').click(function () {
         tool = "chisel";
-        strokeColor = "grey";
     });
 
     $('#spray').click(function () {
         tool = "spray";
-        strokeColor = "grey";
     });
 
     $('#eraser').click(function () {
@@ -271,13 +269,17 @@ jQuery(document).ready(function ($) {
         strokeColor = backgroundColor;
     });
 
+    $('#colorpicker').change(function () {
+        strokeColor = $('#colorpicker').val();
+    })
+
     var sizeSlider = $("#slider");
 
     $(sizeSlider).slider({
         value: 5,
-        min: 1,
-        max: 30,
-        step: 1,
+        min: .5,
+        max: 50,
+        step: .5,
         slide: function (event, ui) {
             $("#size").val(ui.value);
             strokeSize = ui.value;
